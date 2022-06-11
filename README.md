@@ -39,7 +39,7 @@ The logic of the design is that the temperature module measures the temperature
 inside the kiln, and then according to the settings (TFT + rotary encoder
 interface) the relays are activated to regulate the kiln temperature.
 
-![Assembled PCB](kiln-pcb/assembled.jpg)
+![Assembled PCB (v1)](kiln-pcb/assembled-v1.jpg)
 
 
 ### Software
