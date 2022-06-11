@@ -1,4 +1,11 @@
+
+#include <Arduino.h>
+#include <RotaryEncoder.h>
 #include "max6675.h"
+#include <Adafruit_GFX.h>    // Core graphics library
+#include <Adafruit_ST7735.h> // Hardware-specific library for ST7735
+//#include <Adafruit_ST7789.h> // Hardware-specific library for ST7789
+#include <SPI.h>
 
 int thermoDO = D6;
 int thermoCS = D8;
@@ -89,10 +96,6 @@ float pid::update_duty(float target, float actual){
 MAX6675 thermocouple(thermoCLK, thermoCS, thermoDO);
 
 /*************************************/
-#include <Adafruit_GFX.h>    // Core graphics library
-#include <Adafruit_ST7735.h> // Hardware-specific library for ST7735
-//#include <Adafruit_ST7789.h> // Hardware-specific library for ST7789
-#include <SPI.h>
 
 
 #define TFT_CS         D8
@@ -110,8 +113,6 @@ MAX6675 thermocouple(thermoCLK, thermoCS, thermoDO);
 
 /////////////////////////////////////////////////////////////////
 
-#include <Arduino.h>
-#include <RotaryEncoder.h>
 
 #define PIN_IN1 D1
 #define PIN_IN2 D2
@@ -147,7 +148,7 @@ pid pidc(0.01,1e-5,-0.01,0.0);
 unsigned long tt;
 int pos = -1;
 float T = T_OFFSET+10;
-unsigned long duty_period = 60;//duty period in seconds
+unsigned long duty_period = 10;//duty period in seconds
 unsigned long duty_cutoff_lower=1.0;
 unsigned long duty_cutoff_higher = 59.0;
 unsigned long duty_counter = 0.0;
@@ -170,7 +171,7 @@ void setup() {
   tt = millis();
   tft.invertDisplay(true);
   tft.fillScreen(ST77XX_BLACK);
-  tft.setRotation(3);
+  tft.setRotation(1);
 
 // wait for MAX chip to stabilize
   delay(500);

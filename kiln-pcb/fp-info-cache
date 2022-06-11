@@ -1,4 +1,4 @@
-20247959242459837
+20249614212831860
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -85812,6 +85812,13 @@ QFN NoLead
 0
 29
 25
+wemos_d1_mini
+nottinghack_copper_exposed
+Symbol, CC-Public Domain, Copper Top, Small,
+Symbol, CC-Public Domain, Copper Top, Small,
+0
+0
+0
 wemos_d1_mini
 test
 
