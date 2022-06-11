@@ -1,4 +1,4 @@
-20249614212831860
+20252924155262564
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -85805,6 +85805,20 @@ D1_mini_board
 0
 16
 16
+wemos_d1_mini
+hackspace
+
+
+0
+0
+0
+wemos_d1_mini
+hackspace_small
+
+
+0
+0
+0
 wemos_d1_mini
 logo
 QFN, 24 Pin (https://www.analog.com/media/en/package-pcb-resources/package/pkg_pdf/ltc-legacy-qfn/(UH24)%20QFN%2005-08-1747%20Rev%20A.pdf), generated with kicad-footprint-generator ipc_noLead_generator.py
