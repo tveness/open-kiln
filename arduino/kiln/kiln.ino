@@ -6,12 +6,16 @@
 #include <Adafruit_ST7735.h> // Hardware-specific library for ST7735
 //#include <Adafruit_ST7789.h> // Hardware-specific library for ST7789
 #include <SPI.h>
+#include <Bounce2.h>
 
 int thermoDO = D6;
 int thermoCS = D8;
 int thermoCLK = D5;
 char Tbuffer[50];
 char set_buffer[50];
+bool short_press=false;
+bool long_press=false;
+bool long_press_action=false;
 
 
 class pid {
@@ -116,6 +120,7 @@ MAX6675 thermocouple(thermoCLK, thermoCS, thermoDO);
 
 #define PIN_IN1 D1
 #define PIN_IN2 D2
+#define BOUNCE_PIN D4
 
 #define LED_PIN D0
 
@@ -128,6 +133,8 @@ MAX6675 thermocouple(thermoCLK, thermoCS, thermoDO);
 #define ROTARY_MAX ( (T_MAX-T_OFFSET)/T_STEP )
 
 RotaryEncoder *encoder = nullptr;
+Bounce bounce = Bounce();
+
 
 IRAM_ATTR void checkPosition()
 {
@@ -154,6 +161,9 @@ unsigned long duty_cutoff_higher = 59.0;
 unsigned long duty_counter = 0.0;
 float duty_cycle = 0.0;
 void setup() {
+  bounce.attach( BOUNCE_PIN, INPUT );
+  bounce.interval(5); // interval in ms
+  
   
   Serial.begin(9600);
 
@@ -200,7 +210,36 @@ void loop() {
    //tft.fillScreen(ST77XX_BLACK);
 
 
+  bounce.update();
+  int debouncedState = bounce.read();
+  
+   if ( debouncedState == LOW && bounce.currentDuration() > 3 ) {
+   short_press = true;
    
+  } 
+  if (debouncedState == LOW && bounce.currentDuration() > 1000 && !long_press){
+
+    long_press = true;
+    long_press_action = true;
+    short_press = false;
+  }
+
+  if (debouncedState == HIGH && long_press){
+    long_press=false;
+    short_press=false;
+  }
+
+  if (long_press_action) {
+    Serial.println("LONG PRESS");
+    long_press_action=false;
+  }
+  
+ 
+  if (debouncedState == HIGH && short_press ){
+    short_press = false;
+    Serial.println("CLICK!");
+  }
+
 
   encoder->tick(); // just call tick() to check the state.
 
