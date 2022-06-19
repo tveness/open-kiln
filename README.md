@@ -48,13 +48,55 @@ interface) the relays are activated to regulate the kiln temperature.
 ## Physical kiln
 
 ### Materials
+We will need 27 vermiculite bricks for the main oven. 
 
 ### Firebrick enclosure
+This is to be made from vermiculite firebricks. These are supplied in Imperial measurements; each brick has dimension:
+$$ 8 \times 1 \times 4 ''.$$
+The firebrick enclosure is to consist of two parts: the oven cavity, and a door. The measurements of these are as follows:
+
+**Oven**:
+Interior: $16 \times 8 \times 6''$
+
+Exterior: $10 \times 17 \times 8$
+
+**Door**:
+The door is to be two bricks thick. The dimensions are:
+$2 \times 10 \times 8$.
 
 ### Plaster casing
+The plan is to cast a set of thick sheets with which to encase the oven. Since the door will be two bricks thick, there will be no outer casing for the door. The dimensions for these are to be:
+
+Walls($\times 2$): $17 \times 10 \times d$
+
+floor / ceiling ($\times 2$): $(17+d)\times(8+2d)\times d$
+
+back ($\times 1$): $(8 + 2d)\times 10\times d$
+
+where $d$ gives the thickness for the sheets. Provisionally, this is set at $1.5$''. 
+
+### Approach 1:
+Mix vermiculite to quick-set cement in a ratio $4:1$, add water until you can squeeze a fist and get a few drops out. 
 
 ### Metal case
 
-### Power
+### Resistive Elements
+We use A1 kanthal wire, sourced from [here](https://www.ebay.co.uk/itm/322024532921). This has a resistivity of $1.8\Omega / m$. Aiming for $R = 13.2 \Omega$ per coil, we calculate:
+$$d = 13.2 / 1.8 \\ = 7.3 $$
+So that each element ought to be 7.3 $m$ long. 
+
+### Wiring diagram
+These images temporary, to be replaced
+![](2022-06-19-11-43-47.png)
+![](2022-06-19-11-44-13.png)
+![](2022-06-19-11-44-23.png)
+
+
 
 ### Safety considerations
+We are to use:
+- MCBs on each resistor element to isolate those in case of a short circuit. Also if one of the other coils fails, the power draw on the remaining coils would increase - the MCB here would save those coils before they burn out.
+- Magnetic switch; this will leave a circuit *open* when the oven door is open, and *closed* when the oven door is closed. This means that there should be no power to the heating elements when the door is open. 
+- Connector: This would function as a relay switch for the three phase power
+- Relay: This would act as a pre-relay, and would be controlled directly by the PCB. (Expand this section)
+
